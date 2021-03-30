@@ -1,0 +1,121 @@
+* {
+    font-family: "arial","Helvetica", sans-serif;;
+  }
+  h1, h2, h3,h4 {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .example-1 {
+    margin-top: 50px;
+  }
+  .slider-container {
+   position: relative;
+  }
+  
+  .slider-selected-scale {
+  }
+  .slider {
+    position: relative;
+    user-select:none;
+    margin-top: 10px;  
+  }
+  
+  .slider-scale {
+  }
+
+  .slider-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .slider-tag {
+    margin: 0 1rem; 
+  }
+  
+  .slider-thumb {
+    position: absolute;
+    background-color:gray;
+    height:20px;
+    width:20px;
+    border-radius:50%;
+    top: 60%;
+    touch-action: none;
+    transition: width .2s, height .2s;
+    cursor:move; 
+    cursor:-webkit-grab; 
+    cursor:-moz-grab; 
+    cursor:grab;
+    z-index: 10;
+  }
+
+  .slider-thumb:active {
+    cursor: -webkit-grabbing;
+    cursor:    -moz-grabbing;
+    cursor:         grabbing;
+  }
+
+  .slider-thumb:hover {
+    height: 25px;
+    width: 25px;
+  }
+  
+  .slider-thumb-min, .slider-thumb-max {
+    background-color:black;
+  }
+  
+  .slot {
+    text-align: center;
+    display:inline-block;
+    width:20px;
+    height:20px;
+    background-color:none;
+  }
+  
+  .scale-mark {
+   position: absolute;
+   border: 0.5px solid lightgray;;
+   height: 10px;
+  }
+  
+  .slot-scale {
+    text-align: center;
+    display:inline-block;
+    width:20px;
+    height:20px;
+    color: lightgray;
+    user-select: none;
+    
+  }
+  
+  .line {
+    position: absolute;
+    background-color: lightgray;
+    height:2px;
+    width: 20px;
+    top: 12px;
+  }
+  
+  .line-selected {
+    height: 4px;
+    background-color: #191919;
+  }
+    
+  .drag-box {
+    padding: 30px;
+    background: #ccc;
+    width: 100px;
+    cursor: move;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
