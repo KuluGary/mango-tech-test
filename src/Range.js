@@ -2,26 +2,37 @@ import React from 'react';
 import Draggable from 'react-draggable';
 
 class Range extends React.Component {
-    state = {
-        slots: this.props.data?.slots,
-        minThumb: this.props.data?.minThumb,
-        maxThumb: this.props.data?.maxThumb,
-    }
+    state = {}
 
     componentDidMount() {
-        if (!this.props.data?.slots) {
-            if (this.state.minThumb !== undefined && this.state.maxThumb !== undefined) {
+        const { data } = this.props;
+        const { minThumb, maxThumb, slots } = data;
+
+        if (!slots) {
+            if (minThumb !== undefined && maxThumb !== undefined) {
+                const slotArray =  Array.from({
+                    length: maxThumb - minThumb + 1
+                }, (_, i) => i + minThumb)
+
+
+                const minIndex = slotArray.findIndex(slot => slot === minThumb);
+                const maxIndex = slotArray.findIndex(slot => slot === maxThumb);
+
                 this.setState({
                     slots: Array.from({
-                        length: this.state.maxThumb - this.state.minThumb + 1
-                    }, (_, i) => i + this.state.minThumb)
+                        length: maxThumb - minThumb + 1
+                    }, (_, i) => i + minThumb),
+                    minThumb: minIndex,
+                    maxThumb: maxIndex
                 })
             }
-        } else if (!this.props.minThumb && !this.props.maxThumb) {
-            const max = this.props.data?.slots.length -1;
+        } else if (!minThumb && !maxThumb) {
+            const max = slots.length -1;
+
             this.setState({
                 minThumb: 0,
-                maxThumb: max
+                maxThumb: max,
+                slots
             })
         }
     }
@@ -189,7 +200,7 @@ class Range extends React.Component {
                                     data-slot={i}
                                     key={i}
                                     className="slot">
-                                    <div data-slot={i} className={`line ${slot <= this.state.slots[this.state.maxThumb] && slot >= this.state.slots[this.state.minThumb] ? 'line-selected' : ''}`} />
+                                    <div data-slot={i} className={`line${slot <= this.state.slots[this.state.maxThumb] && slot >= this.state.slots[this.state.minThumb] ? ' line-selected' : ''}`} />
                                     <span className="scale-mark"></span>
                                 </div>
                             ))}
